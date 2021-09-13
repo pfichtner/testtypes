@@ -26,8 +26,8 @@ class TestFizzBuzzApprovaltestWithPBT {
 
 	@Provide
 	ListArbitrary<Integer> listsWithIntegersBetween1And100() {
-		// pick 250 random integer values
-		return Arbitraries.integers().greaterOrEqual(1).list().uniqueElements().ofSize(250);
+		// since we only have one run, we pick 1001 random integer values
+		return Arbitraries.integers().greaterOrEqual(1).list().uniqueElements().ofSize(1001);
 	}
 
 }
