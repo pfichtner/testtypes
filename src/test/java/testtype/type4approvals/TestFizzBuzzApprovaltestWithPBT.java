@@ -11,7 +11,6 @@ import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
 import net.jqwik.api.arbitraries.ListArbitrary;
-import net.jqwik.api.constraints.IntRange;
 
 /**
  * An approval test based on jqwik. Please note that to get this work a modified
