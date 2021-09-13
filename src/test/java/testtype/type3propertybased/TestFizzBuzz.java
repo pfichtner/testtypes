@@ -10,7 +10,7 @@ import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
 
-class TestFizzBuzz2PBTStyle {
+class TestFizzBuzz {
 
 	@Property
 	boolean isDivisibleBy3_ShouldReturnFizz(@ForAll("divisibleBy3") int number) {
