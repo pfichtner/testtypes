@@ -1,16 +1,15 @@
 package testtype.type4approvals;
 
 import static net.jqwik.api.ShrinkingMode.OFF;
-import static org.approvaltests.combinations.CombinationApprovals.verifyAllCombinations;
+import static org.approvaltests.Approvals.verify;
+import static org.approvaltests.namer.NamerFactory.withParameters;
 import static testtype.FizzBuzz.fizzBuzz;
 
-import java.util.List;
+import org.approvaltests.namer.NamedEnvironment;
 
-import net.jqwik.api.Arbitraries;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
-import net.jqwik.api.Provide;
-import net.jqwik.api.arbitraries.ListArbitrary;
+import net.jqwik.api.constraints.IntRange;
 
 /**
  * An approval test based on jqwik. Please note that to get this work a modified
@@ -19,15 +18,11 @@ import net.jqwik.api.arbitraries.ListArbitrary;
  */
 class TestFizzBuzzApprovaltestWithPBT {
 
-	@Property(tries = 1, seed = "-1787866974758305853", shrinking = OFF)
-	void approve1To100(@ForAll("listsWithIntegersBetween1And100") List<Integer> numbers) {
-		verifyAllCombinations(i -> fizzBuzz(i), numbers.toArray(new Integer[numbers.size()]));
-	}
-
-	@Provide
-	ListArbitrary<Integer> listsWithIntegersBetween1And100() {
-		// since we only have one run, we pick 1001 random integer values
-		return Arbitraries.integers().greaterOrEqual(1).list().uniqueElements().ofSize(1001);
+	@Property(seed = "-1787866974758305853", shrinking = OFF)
+	void approve1To100(@ForAll @IntRange(min = 1) int number) {
+		try (NamedEnvironment env = withParameters(number)) {
+			verify(fizzBuzz(number));
+		}
 	}
 
 }
