@@ -45,7 +45,7 @@ class TestFizzBuzz {
 
 	@Property
 	void isNotDivisibleBy3Nor5_ShouldReturnTheNumber(@ForAll("notDivisibleBy3Nor5") int number) {
-		// we do NOT filter her but in the provider
+		// we do NOT filter here but in the provider
 		// Assume.that(number % 3 != 0);
 		// Assume.that(number % 5 != 0);
 		assertThat(fizzBuzz(number)).isEqualTo(String.valueOf(number));
