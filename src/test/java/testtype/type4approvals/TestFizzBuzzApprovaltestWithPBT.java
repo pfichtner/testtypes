@@ -19,7 +19,7 @@ import net.jqwik.api.constraints.IntRange;
 class TestFizzBuzzApprovaltestWithPBT {
 
 	@Property(seed = "-1787866974758305853", shrinking = OFF)
-	void approve1To100(@ForAll @IntRange(min = 1) int number) {
+	void approvePositiveInts(@ForAll @IntRange(min = 1) int number) {
 		try (NamedEnvironment env = withParameters(number)) {
 			verify(fizzBuzz(number));
 		}
