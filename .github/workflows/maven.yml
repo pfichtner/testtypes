@@ -14,7 +14,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     
     strategy:
@@ -33,3 +32,14 @@ jobs:
       run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package org.pitest:pitest-maven:mutationCoverage --file pom.xml
     - name: Codecov
       uses: codecov/codecov-action@v2.1.0
+
+  automerge:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v1
+        if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
+        with:
+          github-token: ${{secrets.github_token}}
+          merge-method: 'rebase'
+
