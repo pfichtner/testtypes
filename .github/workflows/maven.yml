@@ -30,6 +30,6 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package --file pom.xml
+      run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package org.pitest:pitest-maven:mutationCoverage --file pom.xml
     - name: Codecov
       uses: codecov/codecov-action@v2.1.0
