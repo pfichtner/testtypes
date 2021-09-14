@@ -97,6 +97,9 @@
 					<targetTests>
 						<param>testtype.type1unit.*</param>
 					</targetTests>
+					<mutators>
+						<mutator>ALL</mutator>
+					</mutators>
 				</configuration>
 			</plugin>
 
