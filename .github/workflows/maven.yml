@@ -34,6 +34,7 @@ jobs:
       uses: codecov/codecov-action@v2.1.0
 
   autoapprove:
+    needs: build
     name: Auto-Approve a PR by dependabot
     runs-on: ubuntu-latest
     steps:
