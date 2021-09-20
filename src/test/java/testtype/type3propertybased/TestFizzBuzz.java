@@ -23,20 +23,20 @@ class TestFizzBuzz {
 		assertThat(fizzBuzz(number)).endsWith("Buzz");
 	}
 
-	// both tests above also included the 15 as argument, so we had to verify using
-	// #startsWith and #endsWith. How to avoid getting divisible by 15 values? We
-	// can filter on the property as well on the provider method. First shown
-	// filtering on the property.
+	// both tests above also included divisible by 15 as arguments, so we had to
+	// verify using #startsWith and #endsWith. How to avoid getting divisible by 15
+	// values? We can filter on the property as well on the provider method. First
+	// shown filtering on the property.
 
 	@Property
-	boolean isDivisibleBy3ButNot15_ShouldExactlyBeFizz(@ForAll("divisibleBy3") int number) {
-		Assume.that(number % 15 != 0);
+	boolean isDivisibleBy3ButNot5_ShouldExactlyBeFizz(@ForAll("divisibleBy3") int number) {
+		Assume.that(number % 5 != 0);
 		return fizzBuzz(number).equals("Fizz");
 	}
 
 	@Property
-	void isDivisibleBy5ButNot15_ShouldExactlyBeBuzz(@ForAll("divisibleBy5") int number) {
-		Assume.that(number % 15 != 0);
+	void isDivisibleBy5ButNot3_ShouldExactlyBeBuzz(@ForAll("divisibleBy5") int number) {
+		Assume.that(number % 3 != 0);
 		assertThat(fizzBuzz(number)).isEqualTo("Buzz");
 	}
 
