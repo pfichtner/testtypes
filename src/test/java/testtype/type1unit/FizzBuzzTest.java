@@ -23,8 +23,8 @@ class FizzBuzzTest {
 	}
 
 	@Test
-	void canConvertFive() {
-		assertThat(fizzBuzz(5)).isEqualTo("Buzz");
+	void canConvertTen() {
+		assertThat(fizzBuzz(10)).isEqualTo("Buzz");
 	}
 
 	@Test
