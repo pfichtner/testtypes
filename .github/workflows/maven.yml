@@ -32,14 +32,3 @@ jobs:
       run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package org.pitest:pitest-maven:mutationCoverage --file pom.xml
     - name: Codecov
       uses: codecov/codecov-action@v2.1.0
-
-  autoapprove:
-    needs: build
-    name: Auto-Approve a PR by dependabot
-    runs-on: ubuntu-latest
-    steps:
-      - name: Auto approve
-        uses: cognitedata/auto-approve-dependabot-action@v3.0.1
-        if: github.actor == 'dependabot[bot]'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
