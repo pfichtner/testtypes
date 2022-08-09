@@ -12,13 +12,17 @@ import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
 
 /**
- * An approval test based on jqwik. Please note that to get this work a modified
- * version of {@link org.approvaltests.namer.AttributeStackSelector} was copied
- * to this project.
+ * An approval test based on jqwik.
  */
 class TestFizzBuzzApprovaltestWithPBT {
 
-	@Property(seed = "-1787866974758305853", shrinking = OFF)
+	/**
+	 * we have to use the same seed over and over again otherwise the numbers would
+	 * differ and we wouldn't have approved them.
+	 */
+	private static final String FIXED_SEED = "-1787866974758305853";
+
+	@Property(seed = FIXED_SEED, shrinking = OFF)
 	void approvePositiveInts(@ForAll @IntRange(min = 1) int number) {
 		try (NamedEnvironment env = withParameters(number)) {
 			verify(fizzBuzz(number));
