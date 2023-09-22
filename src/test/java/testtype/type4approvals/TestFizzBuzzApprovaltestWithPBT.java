@@ -1,6 +1,7 @@
 package testtype.type4approvals;
 
 import static net.jqwik.api.ShrinkingMode.OFF;
+import static org.approvaltests.Approvals.settings;
 import static org.approvaltests.Approvals.verify;
 import static org.approvaltests.namer.NamerFactory.withParameters;
 import static testtype.FizzBuzz.fizzBuzz;
@@ -25,6 +26,8 @@ class TestFizzBuzzApprovaltestWithPBT {
 
 	@Property(seed = FIXED_SEED, shrinking = OFF)
 	void approvePositiveInts(@ForAll @IntRange(min = 1) int number) {
+		settings().allowMultipleVerifyCallsForThisClass();
+		settings().allowMultipleVerifyCallsForThisMethod();
 		try (NamedEnvironment env = withParameters(number)) {
 			verify(fizzBuzz(number), options());
 		}
