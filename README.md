@@ -8,5 +8,5 @@ What's inside?
 - property based tests (using jqwik) 
 - approval tests (approvals) ("hand written" approval test as well as approval tests in combination with jqwik)
 
-Missing mutation tests? It's also inside! Just run ```./mvn org.pitest:pitest-maven:mutationCoverage```
+Missing mutation tests? It's also inside! Just run ```./mvn package org.pitest:pitest-maven:mutationCoverage```
 
