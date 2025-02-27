@@ -34,4 +34,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package org.pitest:pitest-maven:mutationCoverage --file pom.xml
     - name: Codecov
-      uses: codecov/codecov-action@v5.3.1
+      uses: codecov/codecov-action@v5.4.0
