@@ -3,11 +3,10 @@ package testtype.type4approvals;
 import static net.jqwik.api.ShrinkingMode.OFF;
 import static org.approvaltests.Approvals.settings;
 import static org.approvaltests.Approvals.verify;
-import static org.approvaltests.namer.NamerFactory.withParameters;
 import static testtype.FizzBuzz.fizzBuzz;
 
+import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.namer.NamedEnvironment;
 
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -28,13 +27,11 @@ class TestFizzBuzzApprovaltestWithPBT {
 	void approvePositiveInts(@ForAll @IntRange(min = 1) int number) {
 		settings().allowMultipleVerifyCallsForThisClass();
 		settings().allowMultipleVerifyCallsForThisMethod();
-		try (NamedEnvironment env = withParameters(number)) {
-			verify(fizzBuzz(number), options());
-		}
+		verify(fizzBuzz(number), configure(Approvals.NAMES.withParameters(String.valueOf(number))));
 	}
 
-	private Options options() {
-		return new Options()
+	private static Options configure(Options options) {
+		return options
 //				.withReporter(new AutoApproveWhenEmptyReporter())
 		;
 	}
