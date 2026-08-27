@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-java@v6
       with:
         java-version: ${{ matrix.java-version }}
-        distribution: 'adopt'
+        distribution: 'temurin'
         cache: maven
     - name: Build with Maven
       run: mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent package org.pitest:pitest-maven:mutationCoverage --file pom.xml
